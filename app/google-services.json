@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "364152440189",
+    "project_id": "deshcalv1",
+    "storage_bucket": "deshcalv1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:364152440189:android:dfc23fef8ce1df5faa3814",
+        "android_client_info": {
+          "package_name": "com.example.deshcalv1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD12bu6lH8KhTVGNHgWo5F9ZvqsAsbkRBg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
