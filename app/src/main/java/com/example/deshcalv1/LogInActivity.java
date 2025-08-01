@@ -53,7 +53,7 @@ public class LogInActivity extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(AuthResult authResult) {
                                         Toast.makeText(LogInActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(LogInActivity.this,MainActivity.class));
+                                        startActivity(new Intent(LogInActivity.this,HomeActivity.class));
                                         finish();
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {

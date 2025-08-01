@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DeshCalV1">
         <activity
+            android:name=".HomeActivity"
+            android:exported="false" />
+        <activity
             android:name=".UserInformation"
             android:exported="false" />
         <activity
