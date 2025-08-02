@@ -76,7 +76,14 @@ public class SignUpActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
                                 Toast.makeText(SignUpActivity.this, "Signup Successful", Toast.LENGTH_SHORT).show();
-                                saveUserDataToFirebase();
+                                // Check if user is authenticated before proceeding
+                                FirebaseUser currentUser = auth.getCurrentUser();
+                                if (currentUser != null) {
+                                    saveUserDataToFirebase();
+                                } else {
+                                    // Authentication failed somehow, show error
+                                    Toast.makeText(SignUpActivity.this, "Authentication failed", Toast.LENGTH_SHORT).show();
+                                }
                             }else{
                                 Toast.makeText(SignUpActivity.this, "Signup Failed"+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }
@@ -137,23 +144,32 @@ public class SignUpActivity extends AppCompatActivity {
                                 editor.putBoolean("guest_mode", false);
                                 editor.apply();
                                 
-                                startActivity(new Intent(SignUpActivity.this, HomeActivity.class));
-                                finish();
+                                navigateToHome();
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
                                 Toast.makeText(SignUpActivity.this, "Failed to save user data", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(SignUpActivity.this, HomeActivity.class));
-                                finish();
+                                navigateToHome();
                             }
                         });
             } else {
-                // No data in SharedPreferences, just go to HomeActivity
-                startActivity(new Intent(SignUpActivity.this, HomeActivity.class));
-                finish();
+                // No data in SharedPreferences, clear guest mode and go to HomeActivity
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("guest_mode", false);
+                editor.apply();
+                navigateToHome();
             }
+        } else {
+            Toast.makeText(SignUpActivity.this, "User authentication error", Toast.LENGTH_SHORT).show();
         }
+    }
+    
+    private void navigateToHome() {
+        Intent intent = new Intent(SignUpActivity.this, HomeActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
     }
 }
