@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        tools:context=".HomeFragment">
+
+        <!-- Greeting -->
+        <TextView
+            android:id="@+id/greeting_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hi, User!"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Guest Mode Banner -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/guest_banner_card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="@color/purple_200"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/greeting_text">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/guest_banner_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sign up to save your progress and get full access!"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:layout_marginBottom="12dp" />
+
+                <Button
+                    android:id="@+id/create_account_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="Create Account"
+                    android:textSize="14sp"
+                    android:backgroundTint="@color/white"
+                    android:textColor="@color/purple_500"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- BMI Card -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/bmi_card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"
+            app:layout_constraintEnd_toStartOf="@+id/bmr_card"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/guest_banner_card">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="BMI"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/bmi_value_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="22.5"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/teal_700"
+                    android:layout_marginTop="8dp" />
+
+                <TextView
+                    android:id="@+id/bmi_category_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Normal"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="4dp" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- BMR Card -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/bmr_card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="10dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/bmi_card"
+            app:layout_constraintTop_toBottomOf="@+id/guest_banner_card">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="BMR"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/bmr_value_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1650 cal/day"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/teal_700"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- Action Buttons Section -->
+        <TextView
+            android:id="@+id/actions_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quick Actions"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginTop="30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bmi_card" />
+
+        <!-- Action Buttons Grid -->
+        <LinearLayout
+            android:id="@+id/buttons_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/actions_label">
+
+            <Button
+                android:id="@+id/log_food_button"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="Log Food"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:backgroundTint="@color/teal_700"
+                android:textColor="@color/white"
+                android:layout_marginBottom="12dp"
+                android:drawableStart="@android:drawable/ic_menu_add"
+                android:drawablePadding="8dp" />
+
+            <Button
+                android:id="@+id/view_diet_plan_button"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="View Diet Plan"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:backgroundTint="@color/purple_500"
+                android:textColor="@color/white"
+                android:layout_marginBottom="12dp"
+                android:drawableStart="@android:drawable/ic_menu_view"
+                android:drawablePadding="8dp" />
+
+            <Button
+                android:id="@+id/health_tips_button"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="Health Tips"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:backgroundTint="@color/purple_700"
+                android:textColor="@color/white"
+                android:drawableStart="@android:drawable/ic_dialog_info"
+                android:drawablePadding="8dp" />
+
+        </LinearLayout>
+
+        <!-- Bottom spacing -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            app:layout_constraintTop_toBottomOf="@+id/buttons_container" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

@@ -12,6 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DeshCalV1">
         <activity
+            android:name=".ResultActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BodyMetricsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AgeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".GenderActivity"
+            android:exported="false" />
+        <activity
             android:name=".HomeActivity"
             android:exported="false" />
         <activity
