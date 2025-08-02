@@ -141,13 +141,15 @@ public class LogInActivity extends AppCompatActivity {
                                 editor.putBoolean("guest_mode", false);
                                 editor.apply();
                                 
+                                Toast.makeText(LogInActivity.this, "User data saved successfully", Toast.LENGTH_SHORT).show();
                                 navigateToHome();
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(LogInActivity.this, "Failed to save user data", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LogInActivity.this, "Failed to save user data: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                                // Still navigate to home even if data save fails
                                 navigateToHome();
                             }
                         });
