@@ -1,42 +1,22 @@
 package com.example.deshcalv1;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private FirebaseAuth auth;
-    private TextView welcomeText, bmiStatusText, calorieGoalText;
-    private Button viewDietPlanButton, logFoodButton, trackProgressButton;
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
-        // Check if user is authenticated
-        auth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = auth.getCurrentUser();
-        
-        if (currentUser == null) {
-            // User is not authenticated, redirect to login
-            Toast.makeText(this, "Please log in to access this page", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(HomeActivity.this, LogInActivity.class));
-            finish();
-            return;
-        }
-        
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home);
         
@@ -46,36 +26,38 @@ public class HomeActivity extends AppCompatActivity {
             return insets;
         });
         
-        // Initialize UI components
-        initializeViews();
-        setupClickListeners();
+        // Initialize Bottom Navigation
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        
+        // Set default fragment
+        if (savedInstanceState == null) {
+            loadFragment(new HomeFragment());
+        }
+        
+        // Setup bottom navigation listener
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            Fragment selectedFragment = null;
+            
+            if (item.getItemId() == R.id.nav_home) {
+                selectedFragment = new HomeFragment();
+            } else if (item.getItemId() == R.id.nav_diet_plan) {
+                selectedFragment = new DietPlanFragment();
+            } else if (item.getItemId() == R.id.nav_profile) {
+                selectedFragment = new ProfileFragment();
+            }
+            
+            if (selectedFragment != null) {
+                loadFragment(selectedFragment);
+            }
+            
+            return true;
+        });
     }
     
-    private void initializeViews() {
-        welcomeText = findViewById(R.id.welcome_text);
-        bmiStatusText = findViewById(R.id.bmi_status_text);
-        calorieGoalText = findViewById(R.id.calorie_goal_text);
-        viewDietPlanButton = findViewById(R.id.view_diet_plan_button);
-        logFoodButton = findViewById(R.id.log_food_button);
-        trackProgressButton = findViewById(R.id.track_progress_button);
-        
-        // Set welcome message
-        welcomeText.setText("Welcome to DeshCal!");
-        bmiStatusText.setText("BMI Status: Not calculated yet");
-        calorieGoalText.setText("Daily Calorie Goal: Not set");
-    }
-    
-    private void setupClickListeners() {
-        viewDietPlanButton.setOnClickListener(v -> {
-            Toast.makeText(HomeActivity.this, "View Diet Plan - Coming Soon!", Toast.LENGTH_SHORT).show();
-        });
-        
-        logFoodButton.setOnClickListener(v -> {
-            Toast.makeText(HomeActivity.this, "Log Food - Coming Soon!", Toast.LENGTH_SHORT).show();
-        });
-        
-        trackProgressButton.setOnClickListener(v -> {
-            Toast.makeText(HomeActivity.this, "Track Progress - Coming Soon!", Toast.LENGTH_SHORT).show();
-        });
+    private void loadFragment(Fragment fragment) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .commit();
     }
 }
