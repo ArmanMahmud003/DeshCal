@@ -51,7 +51,7 @@
             android:textSize="20sp"
             android:textColor="@color/black"
             android:layout_marginBottom="20dp"
-            android:buttonTint="@color/teal_700" />
+            android:buttonTint="@color/black" />
 
         <RadioButton
             android:id="@+id/female_radio_button"
@@ -60,7 +60,7 @@
             android:text="Female"
             android:textSize="20sp"
             android:textColor="@color/black"
-            android:buttonTint="@color/teal_700" />
+            android:buttonTint="@color/black" />
 
     </RadioGroup>
 
@@ -71,7 +71,7 @@
         android:text="Next"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:backgroundTint="@color/teal_700"
+        android:backgroundTint="@color/black"
         android:textColor="@color/white"
         android:layout_marginBottom="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
