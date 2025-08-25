@@ -80,8 +80,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 FirebaseUser currentUser = auth.getCurrentUser();
                                 if (currentUser != null) {
                                     saveUserDataToFirebase();
-                                    Intent intent = new Intent(SignUpActivity.this, HomeActivity.class);
-                                    startActivity(intent);
+
                                 } else {
                                     // Authentication failed somehow, show error
                                     Toast.makeText(SignUpActivity.this, "Authentication failed", Toast.LENGTH_SHORT).show();
@@ -147,7 +146,9 @@ public class SignUpActivity extends AppCompatActivity {
                                 editor.apply();
                                 
                                 Toast.makeText(SignUpActivity.this, "User data saved successfully", Toast.LENGTH_SHORT).show();
-                                navigateToHome();
+                                //navigateToHome();
+                                Intent intent = new Intent(SignUpActivity.this, HomeActivity.class);
+                                startActivity(intent);
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {

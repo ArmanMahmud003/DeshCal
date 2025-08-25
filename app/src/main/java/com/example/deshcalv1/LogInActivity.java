@@ -71,6 +71,7 @@ public class LogInActivity extends AppCompatActivity {
                                         FirebaseUser currentUser = auth.getCurrentUser();
                                         if (currentUser != null) {
                                             saveUserDataToFirebase();
+
                                         } else {
                                             // Authentication failed somehow, show error
                                             Toast.makeText(LogInActivity.this, "Authentication failed", Toast.LENGTH_SHORT).show();
